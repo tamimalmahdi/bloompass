@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
+import { SHA256, enc } from "crypto-js";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,8 +10,16 @@ function Login() {
   const [password, setPassword] = useState("");
   const { setAuthState } = useContext(AuthContext);
 
+  function encrypt(password) {
+    return SHA256(password).toString();
+  }
+
   const login = () => {
-    const data = { username: username, password: password };
+    console.log(password);
+    const encryptedPassword = encrypt(password);
+    console.log(encryptedPassword);
+    console.log(encrypt(encryptedPassword));
+    const data = { username: username, password: encryptedPassword };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
       if (response.data.error) {
         alert(response.data.error);
@@ -29,7 +38,7 @@ function Login() {
     <div className="loginContainer">
       <label>Username:</label>
       <input
-        type="text"
+        type="email"
         value={username}
         onChange={(event) => {
           setUsername(event.target.value);
