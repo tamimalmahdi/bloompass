@@ -20,6 +20,7 @@ function Login() {
     console.log(encryptedPassword);
     console.log(encrypt(encryptedPassword));
     const data = { username: username, password: encryptedPassword };
+
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
       if (response.data.error) {
         alert(response.data.error);
@@ -34,6 +35,12 @@ function Login() {
     setPassword("");
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      login();
+    }
+  };
+
   return (
     <div className="loginContainer">
       <label>Username:</label>
@@ -46,14 +53,18 @@ function Login() {
       />
       <label>Password:</label>
       <input
+        id="password"
         type="password"
         value={password}
         onChange={(event) => {
           setPassword(event.target.value);
         }}
+        onKeyDown={handleKeyDown}
       />
 
-      <button onClick={login}> Login </button>
+      <button type="submit" id="submitBtn" onClick={login}>
+        Login
+      </button>
     </div>
   );
 }
