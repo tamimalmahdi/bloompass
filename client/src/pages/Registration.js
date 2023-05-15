@@ -6,9 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const navigate = useNavigate();
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
   let passwordCombos = [];
 
   const proximityIndex = {
@@ -41,7 +38,7 @@ export default function Registration() {
   };
 
   const initialValues = {
-    username: "", //email
+    username: "",
     password: "",
   };
 

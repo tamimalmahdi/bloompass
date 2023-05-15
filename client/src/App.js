@@ -43,7 +43,6 @@ function App() {
         <Router>
           <div className="navbar">
             <Link to="/"> Home</Link>
-            <Link to="/createpost"> Add Post</Link>
             {!authState ? (
               <>
                 <Link to="/login"> Login</Link>
@@ -51,6 +50,7 @@ function App() {
               </>
             ) : (
               <>
+                <Link to="/createpost"> Add Post</Link>
                 <button onClick={logout}>Logout</button>
               </>
             )}
