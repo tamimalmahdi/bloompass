@@ -3,10 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SHA256 } from "crypto-js";
 
 export default function Registration() {
   const navigate = useNavigate();
   let passwordCombos = [];
+
+  function encrypt(password) {
+    return SHA256(password).toString();
+  }
 
   const proximityIndex = {
     a: ["q", "w", "s", "z"],
@@ -77,32 +82,31 @@ export default function Registration() {
         }
       }
     }
-    passwordCombos.push(newPassword);
+    passwordCombos.push(encrypt(newPassword));
   };
 
   function addFirstLast(password) {
-    passwordCombos.push(password.substring(1));
-    passwordCombos.push(password.substring(0, password.length - 1));
+    passwordCombos.push(encrypt(password.substring(1)));
+    passwordCombos.push(encrypt(password.substring(0, password.length - 1)));
   }
 
   const generatePasswordCombos = (data) => {
-    passwordCombos.push(data.password); // add normal password
+    passwordCombos.push(encrypt(data.password)); // add normal password
     capsLockOnPassword(data.password); // add caps locked password
     addFirstLast(data.password); // add without first or last char
 
     for (var i = 0; i < data.password.length; i++) {
       let char = data.password.charAt(i);
       let isLetter = /[a-zA-Z]/.test(char);
-      console.log(isLetter);
       let newPassword = data.password;
       if (isLetter) {
         proximityIndex[char.toLowerCase()].forEach((typo) => {
           newPassword = replaceChar(newPassword, typo, i);
-          console.log(newPassword);
-          passwordCombos.push(newPassword);
+          console.log(encrypt(newPassword));
+          passwordCombos.push(encrypt(newPassword));
           newPassword = replaceChar(newPassword, typo.toUpperCase(), i);
-          console.log(newPassword);
-          passwordCombos.push(newPassword);
+          console.log(encrypt(newPassword));
+          passwordCombos.push(encrypt(newPassword));
         });
       }
     }
