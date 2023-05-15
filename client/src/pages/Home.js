@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [listsOfPosts, setListsOfPosts] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     axios.get("http://localhost:3001/posts").then((response) => {
       setListsOfPosts(response.data);
     });
   }, []);
+
   return (
     <div>
       {Array.isArray(listsOfPosts) &&

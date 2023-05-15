@@ -15,10 +15,7 @@ function Login() {
   }
 
   const login = () => {
-    console.log(password);
     const encryptedPassword = encrypt(password);
-    console.log(encryptedPassword);
-    console.log(encrypt(encryptedPassword));
     const data = { username: username, password: encryptedPassword };
 
     axios.post("http://localhost:3001/auth/login", data).then((response) => {

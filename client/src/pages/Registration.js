@@ -14,9 +14,9 @@ export default function Registration() {
   }
 
   const proximityIndex = {
-    a: ["q", "w", "s", "z"],
-    b: ["v", "g", "h", "n"],
-    c: ["x", "d", "f", "v"],
+    a: ["w", "s", "z"],
+    b: ["v", "g", "n"],
+    c: ["x", "d", "v"],
     d: ["s", "f"],
     e: ["w", "r"],
     f: ["d", "g"],
@@ -27,7 +27,7 @@ export default function Registration() {
     k: ["j", "l"],
     l: ["k", "o"],
     m: ["n", "j", "k"],
-    n: ["b", "m"],
+    n: ["b", "j", "m"],
     o: ["i", "p"],
     p: ["o", "l"],
     q: ["w", "a"],
@@ -36,7 +36,7 @@ export default function Registration() {
     t: ["r", "y", "g"],
     u: ["y", "i"],
     v: ["c", "b"],
-    w: ["a", "e", "q", "s"],
+    w: ["e", "q", "s"],
     x: ["z", "c"],
     y: ["t", "u"],
     z: ["a", "s", "x"],
