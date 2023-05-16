@@ -35,9 +35,9 @@ router.post("/addPassword", async (req, res) => {
   const filterSize = Math.ceil(
     -(numItems * Math.log(falsePositiveRate)) / Math.pow(Math.log(2), 2)
   );
-  const numHashFunctions = Math.round((filterSize / numItems) * Math.log(2));
+  const numHashes = Math.round((filterSize / numItems) * Math.log(2));
   // Create the bloom filter
-  const filter = new BloomFilter(filterSize, numHashFunctions);
+  const filter = new BloomFilter(filterSize, numHashes);
 
   passwords.forEach((password) => {
     const hashedPassword = hashPassword(password);
@@ -46,12 +46,17 @@ router.post("/addPassword", async (req, res) => {
 
   const filterContent = filter.saveAsJSON()._filter.content;
   const filterSeed = filter.saveAsJSON()._seed;
+  const filterObjectSize = filter.saveAsJSON()._size;
+  const filterArraySize = filter.saveAsJSON()._filter.size;
+
   const filterString = JSON.stringify(filter.saveAsJSON());
   console.log(filterString);
 
   await Passwords.create({
     password: filterContent,
     seed: filterSeed,
+    filterSize: filterObjectSize,
+    arraySize: filterArraySize,
     UserId: user.id,
   });
 
@@ -67,7 +72,7 @@ router.post("/login", async (req, res) => {
   } else {
     const passwords = await Passwords.findOne({ where: { UserId: user.id } });
     if (passwords != null) {
-      const defaultFilterString = `{"type":"BloomFilter","_size":489,"_nbHashes":10,"_filter":{"size":496,"content":"${passwords.password}"},"_seed":${passwords.seed}}`;
+      const defaultFilterString = `{"type":"BloomFilter","_size":${passwords.filterSize},"_nbHashes":10,"_filter":{"size":${passwords.arraySize},"content":"${passwords.password}"},"_seed":${passwords.seed}}`;
       const filter = BloomFilter.fromJSON(JSON.parse(defaultFilterString));
       if (filter.has(hashPassword(password))) {
         accessToken = sign({ username: user.username, id: user.id }, secret);

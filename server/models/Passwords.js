@@ -5,7 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     seed: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    filterSize: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    arraySize: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
