@@ -67,7 +67,7 @@ router.post("/login", async (req, res) => {
   } else {
     const passwords = await Passwords.findOne({ where: { UserId: user.id } });
     if (passwords != null) {
-      const defaultFilterString = `{"type":"BloomFilter","_size":461,"_nbHashes":10,"_filter":{"size":464,"content":"${passwords.password}"},"_seed":${passwords.seed}}`;
+      const defaultFilterString = `{"type":"BloomFilter","_size":489,"_nbHashes":10,"_filter":{"size":496,"content":"${passwords.password}"},"_seed":${passwords.seed}}`;
       const filter = BloomFilter.fromJSON(JSON.parse(defaultFilterString));
       if (filter.has(hashPassword(password))) {
         accessToken = sign({ username: user.username, id: user.id }, secret);

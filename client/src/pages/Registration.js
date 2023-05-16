@@ -124,7 +124,7 @@ export default function Registration() {
           console.log(response);
           generatePasswordCombos(data); // add typo variants
           console.log("Registration Complete");
-          navigate("/");
+          navigate("/login");
         }
       });
   }
