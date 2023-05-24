@@ -6,19 +6,21 @@ This project implements a web-based application with a typo-tolerant password au
 
 ## Features
 
-Typo-tolerant password authentication: The system incorporates a typo correction scheme to accommodate fat-fingering errors and other common typos made during password entry.
-Space-efficient storage: The application utilizes a bloom filter to store typo variants of passwords in a many-to-one relationship, ensuring efficient storage and retrieval of authentication information.
-Password encryption: Passwords are encrypted using the SHA256 algorithm, providing a secure layer of protection for sensitive user data.
+ - Typo-tolerant password authentication: The system incorporates a typo correction scheme to accommodate fat-fingering errors and other common typos made during password entry.
+ - Space-efficient storage: The application utilizes a bloom filter to store typo variants of passwords in a many-to-one relationship, ensuring efficient storage and retrieval of authentication information.
+ - Password encryption: Passwords are encrypted using the SHA256 algorithm, providing a secure layer of protection for sensitive user data.
 
 ## Setup and Installation
 
 _note that the application may require a "npm insatall" in the respective directories to install node module packages_
 
-Clone the repository: git clone <repository_url>
-Install dependencies: npm install
-Configure the database connection in the config.js file.
-Start the application: npm start
-Usage
+1. Clone the repository: ``` git clone <repository_url> ```
+2. Install dependencies: ``` npm install ```
+3. Configure the database connection in the config.js file.
+4. Navigate to the respective client and server directories
+5. Start the applications: ``` npm start ```
+
+## Usage
 Access the application through the provided URL.
 Register a new account with a username and password.
 Log in with your credentials, accounting for typo errors in the password.
