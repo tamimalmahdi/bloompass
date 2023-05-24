@@ -21,10 +21,10 @@ _note that the application may require a "npm insatall" in the respective direct
 5. Start the applications: ``` npm start ```
 
 ## Usage
-Access the application through the provided URL.
-Register a new account with a username and password.
-Log in with your credentials, accounting for typo errors in the password.
-Explore the different functionalities and features of the application.
+ - Access the application through the provided URL.
+ - Register a new account with a username and password.
+ - Log in with your credentials, accounting for typo errors in the password.
+ - Explore the different functionalities and features of the application.
 
 ## Contributing
 
