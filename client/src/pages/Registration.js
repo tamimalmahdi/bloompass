@@ -63,6 +63,7 @@ export default function Registration() {
   };
 
   const onSubmit = (data) => {
+    passwordCombos = [];
     let uname = validateUsername(data.username);
     let addInitialPass = { username: uname, password: data.password };
 
@@ -110,8 +111,6 @@ export default function Registration() {
         });
       }
     }
-
-    addPassword(data.username, passwordCombos);
   };
 
   async function addUser(data) {
@@ -123,6 +122,7 @@ export default function Registration() {
         } else {
           console.log(response);
           generatePasswordCombos(data); // add typo variants
+          addPassword(data.username, passwordCombos);
           console.log("Registration Complete");
           navigate("/login");
         }
