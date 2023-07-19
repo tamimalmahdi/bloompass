@@ -1,4 +1,4 @@
-# Typo-Tolerant Password Authentication System
+# BLOOMPASS: A Typo-Tolerant Password Scheme with Bloom Filter for Efficient Many-To-One Storage
 
 by Tamim Almahdi ta00687
 
